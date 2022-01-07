@@ -8,37 +8,37 @@ exports.LocatorsPage = class LocatorsPage {
    */
   constructor(page) {
     this.page = page;
-    this.getLoginLogo = page.locator('.login_logo');
-    this.getLoginUserName = page.locator('.login_logo');
-    this.getLoginPassword = page.locator('.login_logo');
-    this.userName = page.locator("[name='user-name']");
-    this.userPassword = page.locator("[name='password']");
-    this.login = page.locator("#login-button")
-    this.getItemIn = page.locator('#add-to-cart-sauce-labs-bike-light');
-    this.goBusket = page.locator('#shopping_cart_container');
-    this.goCheckout = page.locator('#checkout');
-    this.addContactName = page.locator('#first-name');
-    this.ContactLastName = page.locator('#last-name');
-    this.ContactZipCode = page.locator('#postal-code');
-    this.SubmitButton = page.locator(".submit-button");
-    this.FinishButton = page.locator("#finish");
-    this.installation = page.locator('.login-box');
-    this.tocList = page.locator('article ul > li > a');
   }
 
+  export default class LocatorsPage extends Selector{
+    getLoginLogoSelector: string = ".login_logo";
+    getLoginUserNameSelector: string = '.login_logo';
+    getLoginPasswordSelector : string = '.login_logo';
+    userNameSelector : string = "[name='user-name']";
+    userPasswordSelector : string = "[name='password']";
+    loginSelector : string = "#login-button";
+    getItemInSelector : string = '#add-to-cart-sauce-labs-bike-light';
+    goBusketSelector : string = '#shopping_cart_container';
+    goCheckoutSelector : string = '#checkout';
+    addContactNameSelector : string = '#first-name';
+    ContactLastNameSelector : string = '#last-name';
+    ContactZipCodeSelector : string = '#postal-code';
+    SubmitButtonSelector : string = ".submit-button";
+    FinishButtonSelector : string = "#finish";
+    installationSelector : string = '.login-box';
+  
   async goto() {
     await this.page.goto('https://www.saucedemo.com/');
   }
 
   async getLogo() {
+    const getLoginLogo: ElementHandle = await this.find(this.getLoginLogoSelector);
     await this.getLoginLogo.first().click();
-    await expect(this.installation).toBeVisible();
   }
 
   async getuserName() {
-    await this.userName.click();
-    await this.userName.fill("standard_user")
-    await expect(this.userName).toBeVisible();
+    const userName: ElementHandle = await this.find(this.getLoginUserNameSelector);
+    await this.userName.click().fill("standard_user");  
   }
 
   async getuserPassword() {

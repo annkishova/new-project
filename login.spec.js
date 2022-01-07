@@ -5,9 +5,11 @@ const { LocatorsPage } = require('./locators.po');
 
 test('Login', async ({ page }) => {
     const Locators = new LocatorsPage(page);
-    await Locators.goto();
+    await Locators.goto('https://www.saucedemo.com/');
     await Locators.getLogo();
+    await expect(this.installationSelector).toBeVisible();
     await Locators.getuserName();
+    await expect(this.userNameSelector).toBeVisible();
     await Locators.getuserPassword();
     await Locators.getLogin();
   });
